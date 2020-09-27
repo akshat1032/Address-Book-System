@@ -28,19 +28,8 @@ public class AddressBookMain {
 			//Enter user choice
 			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. PERFORM MORE OPERATIONS\n4. EXIT");
 			System.out.println("Enter your choice");
-			int choice = sc.nextInt();		
-			
-
-			//Storing the contact details in Address Book
-			personObject[personObjectCounter] = new ContactPerson();
-			personObject[personObjectCounter].setFirstName(firstName);
-			personObject[personObjectCounter].setLastName(lastName);
-			personObject[personObjectCounter].setAddress(address);
-			personObject[personObjectCounter].setCityName(cityName);
-			personObject[personObjectCounter].setZipCode(zipCode);
-			personObject[personObjectCounter].setPhoneNumber(phoneNumber);
-			personObject[personObjectCounter].setEmail(email);
-			personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
+			int choice = sc.nextInt();
+			sc.nextLine();		
 
 			switch(choice) {
 			case 1:
