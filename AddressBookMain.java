@@ -4,8 +4,8 @@ public class AddressBookMain {
 	
 	public static void main(String[] args) {
 		
-		//Welcome message
-		System.out.println("Welcome to Address Book Program");
+		//Creating a contact in Address Book
+		ContactPerson personObject = new ContactPerson("Tom", "Sawyer", "Los Angeles, California", "Beverly Hills", 90035L, 629483567L, "tom.sawyer@gmail.com");
 	}
 
 }
