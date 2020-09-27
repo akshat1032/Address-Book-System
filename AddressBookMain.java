@@ -52,6 +52,7 @@ public class AddressBookMain {
 			personObject[personObjectCounter].setZipCode(zipCode);
 			personObject[personObjectCounter].setPhoneNumber(phoneNumber);
 			personObject[personObjectCounter].setEmail(email);
+			personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
 			
 			//Asking for user's choice
 			System.out.println("Do you wish to add another record?(Y/N)");
