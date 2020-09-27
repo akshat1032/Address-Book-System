@@ -26,21 +26,9 @@ public class AddressBookMain {
 		while (defaultOption) {
 			
 			//Enter user choice
-			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. PERFORM MORE OPERATIONS\n4. EXIT");
+			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. PERFORM MORE OPERATIONS\n5. EXIT");
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();		
-			
-
-			//Storing the contact details in Address Book
-			personObject[personObjectCounter] = new ContactPerson();
-			personObject[personObjectCounter].setFirstName(firstName);
-			personObject[personObjectCounter].setLastName(lastName);
-			personObject[personObjectCounter].setAddress(address);
-			personObject[personObjectCounter].setCityName(cityName);
-			personObject[personObjectCounter].setZipCode(zipCode);
-			personObject[personObjectCounter].setPhoneNumber(phoneNumber);
-			personObject[personObjectCounter].setEmail(email);
-			personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
 
 			switch(choice) {
 			case 1:
@@ -105,8 +93,30 @@ public class AddressBookMain {
 				}
 				break;
 			case 3:
-				continue;
+				System.out.println("Enter the name of contact to be deleted");
+				String firstNameToDelete = sc.next();
+				int whileLoopCount = 0;
+				while(whileLoopCount<1000) {
+					if(firstNameToDelete.equals(personObject[whileLoopCount].getFirstName())) {
+						System.out.println("Contact to be deleted");
+						System.out.println("First name : "+personObject[whileLoopCount].getFirstName());
+						System.out.println("Last name : "+personObject[whileLoopCount].getLastName());
+						System.out.println("Address : "+personObject[whileLoopCount].getAddress());
+						System.out.println("City Name : "+personObject[whileLoopCount].getCityName());
+						System.out.println("Zip Code : "+personObject[whileLoopCount].getZipCode());
+						System.out.println("Phone number : "+personObject[whileLoopCount].getPhoneNumber());
+						System.out.println("Email : "+personObject[whileLoopCount].getEmail());
+						for (int i = whileLoopCount; i<999 ; i++) {
+							personObject[i] = personObject[i+1];
+						}
+						personObject[999] = null;
+					}
+					whileLoopCount++;
+				}
+				break;
 			case 4:
+				continue;
+			case 5:
 				defaultOption = false;
 			default:
 				System.exit(0);
