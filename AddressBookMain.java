@@ -25,24 +25,12 @@ public class AddressBookMain {
 		//Loop to perform multiple operations based on user choice
 		while (defaultOption) {
 			
-			System.out.println("Enter the details of the person to be added");
-			sc.nextLine();
-			System.out.println("First name : ");
-			firstName = sc.nextLine();
-			System.out.println("Last name : ");
-			lastName = sc.nextLine();
-			System.out.println("Address : ");
-			address = sc.nextLine();
-			System.out.println("City Name : ");
-			cityName = sc.nextLine();
-			System.out.println("Zip Code : ");
-			zipCode = sc.nextLong();
-			System.out.println("Phone number : ");
-			phoneNumber = sc.nextLong();
-			sc.nextLine();
-			System.out.println("Email : ");
-			email = sc.nextLine();
+			//Enter user choice
+			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. PERFORM MORE OPERATIONS\n4. EXIT");
+			System.out.println("Enter your choice");
+			int choice = sc.nextInt();		
 			
+
 			//Storing the contact details in Address Book
 			personObject[personObjectCounter] = new ContactPerson();
 			personObject[personObjectCounter].setFirstName(firstName);
@@ -53,20 +41,76 @@ public class AddressBookMain {
 			personObject[personObjectCounter].setPhoneNumber(phoneNumber);
 			personObject[personObjectCounter].setEmail(email);
 			personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
+
+			switch(choice) {
+			case 1:
+				System.out.println("Enter the details of the person to be added");
+				sc.nextLine();
+				System.out.println("First name : ");
+				firstName = sc.nextLine();
+				System.out.println("Last name : ");
+				lastName = sc.nextLine();
+				System.out.println("Address : ");
+				address = sc.nextLine();
+				System.out.println("City Name : ");
+				cityName = sc.nextLine();
+				System.out.println("Zip Code : ");
+				zipCode = sc.nextLong();
+				System.out.println("Phone number : ");
+				phoneNumber = sc.nextLong();
+				sc.nextLine();
+				System.out.println("Email : ");
+				email = sc.nextLine();
 			
-			//Asking for user's choice
-			System.out.println("Do you wish to add another record?(Y/N)");
-			char userChoice = sc.next().charAt(0);
-			if (userChoice == 'Y' || userChoice == 'y') {
-				personObjectCounter ++;
-				defaultOption = true;
+				//Storing the contact details in Address Book
+				personObject[personObjectCounter] = new ContactPerson();
+				personObject[personObjectCounter].setFirstName(firstName);
+				personObject[personObjectCounter].setLastName(lastName);
+				personObject[personObjectCounter].setAddress(address);
+				personObject[personObjectCounter].setCityName(cityName);
+				personObject[personObjectCounter].setZipCode(zipCode);
+				personObject[personObjectCounter].setPhoneNumber(phoneNumber);
+				personObject[personObjectCounter].setEmail(email);
+				personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
+				personObjectCounter++;
+				break;
+			case 2:
+				System.out.println("Enter the name of the contact to be edited");
+				String firstNameToEdit = sc.next();
+				int whileLoopCounter = 0;
+				while(whileLoopCounter<1000) {
+					if(firstNameToEdit.equals(personObject[whileLoopCounter].getFirstName())) {
+						System.out.println("Enter the details of the person to be edited");
+						System.out.println("Address : ");
+						address = sc.nextLine();
+						System.out.println("City Name : ");
+						cityName = sc.nextLine();
+						System.out.println("Zip Code : ");
+						zipCode = sc.nextLong();
+						System.out.println("Phone number : ");
+						phoneNumber = sc.nextLong();
+						sc.nextLine();
+						System.out.println("Email : ");
+						email = sc.nextLine();
+						
+						//Adding edited details to the address book
+						personObject[whileLoopCounter].setAddress(address);
+						personObject[whileLoopCounter].setCityName(cityName);
+						personObject[whileLoopCounter].setZipCode(zipCode);
+						personObject[whileLoopCounter].setPhoneNumber(phoneNumber);
+						personObject[whileLoopCounter].setEmail(email);
+						personObject[whileLoopCounter].setPersonObject(personObject[whileLoopCounter]);
+					}
+					whileLoopCounter++;
+				}
+				break;
+			case 3:
 				continue;
-			}
-			else if (userChoice == 'N' || userChoice == 'n') {
+			case 4:
 				defaultOption = false;
-			}
-			else
+			default:
 				System.exit(0);
+			}
 		}
 	}
 }
