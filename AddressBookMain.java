@@ -1,6 +1,7 @@
 package com.capgemini.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -20,14 +21,18 @@ public class AddressBookMain {
 		Scanner sc = new Scanner(System.in);
 		boolean defaultOption = true;
 		
+		System.out.println("Enter name for the address book");
+		String addressBookName = sc.nextLine(); //Taking name of first address book
+		
 		//Creating an array list for storing contacts
 		ArrayList<ContactPerson> personObject = new ArrayList<>();
+		HashMap<String, ArrayList<ContactPerson>> addressBook = new HashMap<>();
 		
 		//Loop to perform multiple operations based on user choice
 		while (defaultOption) {
 			
 			//Enter user choice
-			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. PERFORM MORE OPERATIONS\n5. EXIT");
+			System.out.println("User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. PERFORM MORE OPERATIONS\n6. EXIT");
 			System.out.println("Enter your choice");
 
 			int choice = sc.nextInt();
@@ -118,13 +123,20 @@ public class AddressBookMain {
 				}
 				break;
 			case 4:
-				continue;
+				addressBook.put(addressBookName, personObject);
+				System.out.println("Enter the name for address book");
+				addressBookName = sc.nextLine();
+				personObject = new ArrayList<>();
+				break;
 			case 5:
+				continue;
+			case 6:
 				defaultOption = false;
 				break;
 			default:
 				System.exit(0);
 			}
 		}
+		addressBook.put(addressBookName, personObject);
 	}
 }
