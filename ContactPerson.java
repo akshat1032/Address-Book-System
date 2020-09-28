@@ -10,7 +10,6 @@ public class ContactPerson {
 	private long zipCode;
 	private long phoneNumber;
 	private String email;
-	private ContactPerson personObject;
 	
 	//Getters and setters
 	public String getFirstName() {
@@ -54,11 +53,5 @@ public class ContactPerson {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public void setPersonObject(ContactPerson personObject) {
-		this.personObject = personObject;
-	}
-	public ContactPerson getPersonObject() {
-		return personObject;
 	}
 }

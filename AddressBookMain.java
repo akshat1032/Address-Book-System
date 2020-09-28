@@ -1,5 +1,6 @@
 package com.capgemini.addressbooksystem;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -18,9 +19,9 @@ public class AddressBookMain {
 		
 		Scanner sc = new Scanner(System.in);
 		boolean defaultOption = true;
-		int personObjectCounter = 0;
 		
-		ContactPerson personObject[] = new ContactPerson[1000];//Assuming maximum no. of records to be stored is 1000
+		//Creating an array list for storing contacts
+		ArrayList<ContactPerson> personObject = new ArrayList<>();
 		
 		//Loop to perform multiple operations based on user choice
 		while (defaultOption) {
@@ -51,25 +52,26 @@ public class AddressBookMain {
 				sc.nextLine();
 				System.out.println("Email : ");
 				email = sc.nextLine();
+				ContactPerson personContact = new ContactPerson();
 			
 				//Storing the contact details in Address Book
-				personObject[personObjectCounter] = new ContactPerson();
-				personObject[personObjectCounter].setFirstName(firstName);
-				personObject[personObjectCounter].setLastName(lastName);
-				personObject[personObjectCounter].setAddress(address);
-				personObject[personObjectCounter].setCityName(cityName);
-				personObject[personObjectCounter].setZipCode(zipCode);
-				personObject[personObjectCounter].setPhoneNumber(phoneNumber);
-				personObject[personObjectCounter].setEmail(email);
-				personObject[personObjectCounter].setPersonObject(personObject[personObjectCounter]);
-				personObjectCounter++;
+				personContact.setFirstName(firstName);
+				personContact.setLastName(lastName);
+				personContact.setAddress(address);
+				personContact.setCityName(cityName);
+				personContact.setZipCode(zipCode);
+				personContact.setPhoneNumber(phoneNumber);
+				personContact.setEmail(email);
+				personObject.add(personContact);
 				break;
 			case 2:
 				System.out.println("Enter the name of the contact to be edited");
 				String firstNameToEdit = sc.next();
 				int whileLoopCounter = 0;
-				while(whileLoopCounter<1000) {
-					if(firstNameToEdit.equals(personObject[whileLoopCounter].getFirstName())) {
+				while(whileLoopCounter<personObject.size()) {
+					
+					if(firstNameToEdit.equals(personObject.get(whileLoopCounter).getFirstName())) {
+						
 						System.out.println("Enter the details of the person to be edited");
 						System.out.println("Address : ");
 						address = sc.nextLine();
@@ -84,12 +86,11 @@ public class AddressBookMain {
 						email = sc.nextLine();
 						
 						//Adding edited details to the address book
-						personObject[whileLoopCounter].setAddress(address);
-						personObject[whileLoopCounter].setCityName(cityName);
-						personObject[whileLoopCounter].setZipCode(zipCode);
-						personObject[whileLoopCounter].setPhoneNumber(phoneNumber);
-						personObject[whileLoopCounter].setEmail(email);
-						personObject[whileLoopCounter].setPersonObject(personObject[whileLoopCounter]);
+						personObject.get(whileLoopCounter).setAddress(address);
+						personObject.get(whileLoopCounter).setCityName(cityName);
+						personObject.get(whileLoopCounter).setZipCode(zipCode);
+						personObject.get(whileLoopCounter).setPhoneNumber(phoneNumber);
+						personObject.get(whileLoopCounter).setEmail(email);
 					}
 					whileLoopCounter++;
 				}
@@ -98,21 +99,20 @@ public class AddressBookMain {
 				System.out.println("Enter the name of contact to be deleted");
 				String firstNameToDelete = sc.next();
 				int whileLoopCount = 0;
-				while(whileLoopCount<1000) {
-					if(firstNameToDelete.equals(personObject[whileLoopCount].getFirstName())) {
+				while(whileLoopCount<personObject.size()) {
+					
+					if(firstNameToDelete.equals(personObject.get(whileLoopCount).getFirstName())) {
+						
 						System.out.println("Contact to be deleted");
-						System.out.println("First name : "+personObject[whileLoopCount].getFirstName());
-						System.out.println("Last name : "+personObject[whileLoopCount].getLastName());
-						System.out.println("Address : "+personObject[whileLoopCount].getAddress());
-						System.out.println("City Name : "+personObject[whileLoopCount].getCityName());
-						System.out.println("Zip Code : "+personObject[whileLoopCount].getZipCode());
-						System.out.println("Phone number : "+personObject[whileLoopCount].getPhoneNumber());
-						System.out.println("Email : "+personObject[whileLoopCount].getEmail());
+						System.out.println("First name : "+personObject.get(whileLoopCount).getFirstName());
+						System.out.println("Last name : "+personObject.get(whileLoopCount).getLastName());
+						System.out.println("Address : "+personObject.get(whileLoopCount).getAddress());
+						System.out.println("City Name : "+personObject.get(whileLoopCount).getCityName());
+						System.out.println("Zip Code : "+personObject.get(whileLoopCount).getZipCode());
+						System.out.println("Phone number : "+personObject.get(whileLoopCount).getPhoneNumber());
+						System.out.println("Email : "+personObject.get(whileLoopCount).getEmail());
 						//Deletion of record
-						for (int i = whileLoopCount; i<999 ; i++) {
-							personObject[i] = personObject[i+1];
-						}
-						personObject[999] = null;
+						personObject.remove(whileLoopCount);
 					}
 					whileLoopCount++;
 				}
@@ -121,6 +121,7 @@ public class AddressBookMain {
 				continue;
 			case 5:
 				defaultOption = false;
+				break;
 			default:
 				System.exit(0);
 			}
