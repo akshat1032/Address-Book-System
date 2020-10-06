@@ -38,7 +38,7 @@ public class AddressBookMain {
 
 			// Enter user choice
 			System.out.println(
-					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. SEARCH PERSON IN CITY \n6. VIEW PERSON BY CITY \n7. PERFORM MORE OPERATIONS\n8. EXIT");
+					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. SEARCH PERSON IN CITY \n6. VIEW PERSON BY CITY \n7. DISPLAY NUMBER OF PERSON BY CITY NAME \n8. PERFORM MORE OPERATIONS\n9. EXIT");
 			System.out.println("Enter your choice");
 
 			int choice = sc.nextInt();
@@ -167,9 +167,21 @@ public class AddressBookMain {
 				}
 				break;
 			case 7:
-				addressBook.put(addressBookName, personObject);
-				continue;
+				int countOfPerson = 0;
+				System.out.println("Enter city name to count person :");
+				String cityCountPerson = sc.nextLine();
+				Enumeration<ArrayList<String>> keysCountPerson = cityPerson.elements();
+				while(keysCountPerson.hasMoreElements()) {
+					if(cityPerson.keys().equals(cityCountPerson)) {
+						countOfPerson = keysCountPerson.nextElement().size();
+					}
+				}
+				System.out.println("No of persons in city, "+cityCountPerson+" is : "+countOfPerson);
 			case 8:
+				addressBook.put(addressBookName, personObject);
+				personObject = new ArrayList<>();
+				continue;
+			case 9:
 				addressBook.put(addressBookName, personObject);
 				defaultOption = false;
 				break;
