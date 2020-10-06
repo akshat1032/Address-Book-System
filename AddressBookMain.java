@@ -67,7 +67,14 @@ public class AddressBookMain {
 				personContact.setZipCode(zipCode);
 				personContact.setPhoneNumber(phoneNumber);
 				personContact.setEmail(email);
-				personObject.add(personContact);
+				for (ContactPerson contactPerson : personObject) {
+					if (contactPerson.equals(personContact)) {
+						System.out.println("Duplicate person");
+					}
+					else {
+						personObject.add(personContact);
+					}
+				}
 				break;
 			case 2:
 				System.out.println("Enter the name of the contact to be edited");
