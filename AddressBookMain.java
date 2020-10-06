@@ -1,7 +1,11 @@
 package com.capgemini.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -26,13 +30,15 @@ public class AddressBookMain {
 		// Creating an array list for storing contacts
 		ArrayList<ContactPerson> personObject = new ArrayList<>();
 		HashMap<String, ArrayList<ContactPerson>> addressBook = new HashMap<>();
-
+		Dictionary<String,ArrayList<String>> cityPerson = new Hashtable<String, ArrayList<String>>();
+		ArrayList<String> personName = new ArrayList<>();
+		
 		// Loop to perform multiple operations based on user choice
 		while (defaultOption) {
 
 			// Enter user choice
 			System.out.println(
-					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. SEARCH PERSON IN CITY \n6. PERFORM MORE OPERATIONS\n7. EXIT");
+					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. SEARCH PERSON IN CITY \n6. VIEW PERSON BY CITY \n7. PERFORM MORE OPERATIONS\n8. EXIT");
 			System.out.println("Enter your choice");
 
 			int choice = sc.nextInt();
@@ -72,8 +78,11 @@ public class AddressBookMain {
 						System.out.println("Duplicate person");
 					} else {
 						personObject.add(personContact);
+						personName.add(personContact.getFirstName()+" "+personContact.getLastName());
 					}
 				}
+				cityPerson.put(cityName, personName);
+				
 				break;
 			case 2:
 				System.out.println("Enter the name of the contact to be edited");
@@ -148,14 +157,26 @@ public class AddressBookMain {
 				}
 				break;
 			case 6:
-				continue;
+				System.out.println("Enter the name of city to get list of person: ");
+				String cityForPerson = sc.nextLine();
+				Enumeration<String> keys = cityPerson.keys();
+				if(cityForPerson.equals(keys)) {
+					Enumeration<ArrayList<String>> person = cityPerson.elements();
+					System.out.println("Person in city, "+cityForPerson);
+					System.out.println(person);
+				}
+				break;
 			case 7:
+				addressBook.put(addressBookName, personObject);
+				continue;
+			case 8:
+				addressBook.put(addressBookName, personObject);
 				defaultOption = false;
 				break;
 			default:
+				addressBook.put(addressBookName, personObject);
 				System.exit(0);
 			}
 		}
-		addressBook.put(addressBookName, personObject);
 	}
 }
