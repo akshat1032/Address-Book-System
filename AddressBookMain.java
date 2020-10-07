@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -178,7 +179,11 @@ public class AddressBookMain {
 				}
 				System.out.println("No of persons in city, "+cityCountPerson+" is : "+countOfPerson);
 			case 8:
-				addressBook.put(addressBookName, personObject);
+				ArrayList<ContactPerson> sortedByName = (ArrayList<ContactPerson>)personObject.stream().sorted((personName1, personName2 ) -> personName1.getFirstName().compareTo(personName2.getFirstName())).collect(Collectors.toList());
+				for(ContactPerson person : sortedByName) {
+					System.out.println(person);
+				}
+				addressBook.put(addressBookName, sortedByName);
 				personObject = new ArrayList<>();
 				continue;
 			case 9:

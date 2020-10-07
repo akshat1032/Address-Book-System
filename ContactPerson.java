@@ -67,12 +67,18 @@ public class ContactPerson {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	//Overriding equals method
 	public boolean equals(ContactPerson person) {
 		if (this.getFirstName().equals(person.getFirstName())) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	//Overriding toString method
+	public String toString() {
+		return "Name : "+this.getFirstName()+" "+this.getLastName()+"\nAddress : "+this.getAddress()+"\nCity : "+this.getCityName()+"\nZip Code : "+this.getZipCode()+"\nPhone Number : "+this.getPhoneNumber()+"\nEmail : "+this.getEmail();
 	}
 }
