@@ -31,6 +31,8 @@ public class AddressBookMain {
 		// Creating an array list for storing contacts
 		ArrayList<ContactPerson> personObject = new ArrayList<>();
 		HashMap<String, ArrayList<ContactPerson>> addressBook = new HashMap<>();
+		HashMap<String, ArrayList<ContactPerson>> addressBookByCityName = new HashMap<>();
+		HashMap<String, ArrayList<ContactPerson>> addressBookByZipCode = new HashMap<>();
 		Dictionary<String,ArrayList<String>> cityPerson = new Hashtable<String, ArrayList<String>>();
 		ArrayList<String> personName = new ArrayList<>();
 		
@@ -178,12 +180,17 @@ public class AddressBookMain {
 					}
 				}
 				System.out.println("No of persons in city, "+cityCountPerson+" is : "+countOfPerson);
+				break;
 			case 8:
 				ArrayList<ContactPerson> sortedByName = (ArrayList<ContactPerson>)personObject.stream().sorted((personName1, personName2 ) -> personName1.getFirstName().compareTo(personName2.getFirstName())).collect(Collectors.toList());
-				for(ContactPerson person : sortedByName) {
-					System.out.println(person);
-				}
+				sortedByName.stream().forEach(System.out::println);
+				ArrayList<ContactPerson> sortedByCityName = (ArrayList<ContactPerson>)personObject.stream().sorted((personCity1, personCity2 ) -> personCity1.getCityName().compareTo(personCity2.getCityName())).collect(Collectors.toList());
+				sortedByCityName.stream().forEach(System.out::println);
+				ArrayList<ContactPerson> sortedByZipCode = (ArrayList<ContactPerson>)personObject.stream().sorted((personZip1, personZip2 ) -> Long.valueOf(personZip1.getZipCode()).compareTo(personZip2.getZipCode())).collect(Collectors.toList());
+				sortedByZipCode.stream().forEach(System.out::println);
 				addressBook.put(addressBookName, sortedByName);
+				addressBookByCityName.put(addressBookName, sortedByCityName);
+				addressBookByZipCode.put(addressBookName, sortedByZipCode);
 				personObject = new ArrayList<>();
 				continue;
 			case 9:
