@@ -264,7 +264,13 @@ public class AddressBookMain {
 		}
 	}
 
+	// Writing to file
 	public void writeDataToFile() {
 		new AddressBookFileIOService().writeToFile(personObjectList);
+	}
+	
+	// Reading from file
+	public void readFromFile() {
+		new AddressBookFileIOService().readFromFile();
 	}
 }
