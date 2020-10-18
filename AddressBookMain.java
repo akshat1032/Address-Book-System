@@ -273,4 +273,12 @@ public class AddressBookMain {
 	public void readFromFile() {
 		new AddressBookFileIOService().readFromFile();
 	}
+
+	public void writeDataToCSVFile() throws Exception {
+		new AddressBookSystemCSVService().writeCSVData();
+	}
+
+	public void readFromCSVFile(Logger logger) throws Exception {
+		new AddressBookSystemCSVService().readCSVData(logger);
+	}
 }

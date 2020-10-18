@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class AddressBookBuilder {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		Logger logger = Logger.getLogger(AddressBookMain.class.getName());
 
@@ -25,7 +25,13 @@ public class AddressBookBuilder {
 		do {
 			// Enter user choice
 			System.out.println(
-					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK\n5. SEARCH PERSON IN CITY OR STATE \n6. VIEW PERSON BY CITY OR STATE \n7. DISPLAY NUMBER OF PERSON BY CITY NAME \n8. SORT BY NAME AND PRINT\n9. SORT BY CHOICE AND PRINT \n10. WRITE DATA TO FILE \n11. READ DATA FROM FILE \n12. EXIT");
+					"User choices : -\n1. ADD A NEW CONTACT\n2. EDIT A CONTACT"
+					+ "\n3. DELETE A CONTACT\n4. ADD NEW ADDRESS BOOK"
+					+ "\n5. SEARCH PERSON IN CITY OR STATE \n6. VIEW PERSON BY CITY OR STATE "
+					+ "\n7. DISPLAY NUMBER OF PERSON BY CITY NAME \n8. SORT BY NAME AND PRINT"
+					+ "\n9. SORT BY CHOICE AND PRINT \n10. WRITE DATA TO FILE "
+					+ "\n11. READ DATA FROM FILE \n12. WRITE DATA TO CSV FILE"
+					+ "\n13. READ DATA FROM CSV FILE \n14. EXIT");
 			System.out.println("Enter your choice");
 
 			choice = inputReader.nextInt();
@@ -86,9 +92,17 @@ public class AddressBookBuilder {
 				logger.info("Read data from file and display");
 				addressBookMain.readFromFile();
 			case 12:
+				logger.info("Write to CSV file");
+				addressBookMain.writeDataToCSVFile();
+				break;
+			case 13:
+				logger.info("Read from CSV file");
+				addressBookMain.readFromCSVFile(logger);
+				break;
+			case 14:
 				logger.info("EXITING");
 				break;
 			}
-		} while (choice != 11);
+		} while (choice != 14);
 	}
 }
