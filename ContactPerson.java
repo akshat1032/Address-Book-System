@@ -7,78 +7,69 @@ public class ContactPerson {
 	private String lastName;
 	private String address;
 	private String cityName;
+	private String stateName;
 	private long zipCode;
 	private long phoneNumber;
 	private String email;
 
-	// Getters and setters
-	public String getFirstName() {
-		return firstName;
+	// Param constructor to initialize the field
+	public ContactPerson(String firstName, String lastName, String address, String cityName, String stateName,
+			long zipCode, long phoneNumber, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.cityName = cityName;
+		this.stateName = stateName;
+		this.zipCode = zipCode;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String getFirstName() {
+		return firstName;
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	public String getAddress() {
 		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getCityName() {
 		return cityName;
 	}
 
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public String getStateName() {
+		return stateName;
 	}
 
 	public long getZipCode() {
 		return zipCode;
 	}
 
-	public void setZipCode(long zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public long getPhoneNumber() {
 		return phoneNumber;
-	}
-
-	public void setPhoneNumber(long phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	//Overriding equals method
+	// Override equals method
 	public boolean equals(ContactPerson person) {
-		if (this.getFirstName().equals(person.getFirstName())) {
+		if (this.firstName.equals(person.firstName) && this.lastName.equals(person.lastName)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	//Overriding toString method
+
+	// Overriding toString method
 	public String toString() {
-		return "Name : "+this.getFirstName()+" "+this.getLastName()+"\nAddress : "+this.getAddress()+"\nCity : "+this.getCityName()+"\nZip Code : "+this.getZipCode()+"\nPhone Number : "+this.getPhoneNumber()+"\nEmail : "+this.getEmail();
+		return "Name : " + this.firstName + " " + this.lastName + "\nAddress : " + this.address + "\nCity : "
+				+ this.cityName + "\nState : " + this.stateName + "\nZip Code : " + this.zipCode + "\nPhone Number : "
+				+ this.phoneNumber + "\nEmail : " + this.email;
 	}
 }
