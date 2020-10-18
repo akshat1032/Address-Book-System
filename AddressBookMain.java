@@ -1,5 +1,6 @@
 package com.capgemini.addressbooksystem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -280,5 +281,13 @@ public class AddressBookMain {
 
 	public void readFromCSVFile(Logger logger) throws Exception {
 		new AddressBookSystemCSVService().readCSVData(logger);
+	}
+
+	public void writeDataToJSONFile() throws IOException {
+		new AddressBookSystemJSonService().writeDataJson();
+	}
+
+	public void readFromJSonFile(Logger logger) throws IOException {
+		new AddressBookSystemJSonService().readDataJson(logger);
 	}
 }

@@ -31,7 +31,8 @@ public class AddressBookBuilder {
 					+ "\n7. DISPLAY NUMBER OF PERSON BY CITY NAME \n8. SORT BY NAME AND PRINT"
 					+ "\n9. SORT BY CHOICE AND PRINT \n10. WRITE DATA TO FILE "
 					+ "\n11. READ DATA FROM FILE \n12. WRITE DATA TO CSV FILE"
-					+ "\n13. READ DATA FROM CSV FILE \n14. EXIT");
+					+ "\n13. READ DATA FROM CSV FILE \n14. WRITE DATA TO JSON FILE"
+					+ "\n15. READ DATA FROM JSON FILE \n16. EXIT");
 			System.out.println("Enter your choice");
 
 			choice = inputReader.nextInt();
@@ -100,9 +101,17 @@ public class AddressBookBuilder {
 				addressBookMain.readFromCSVFile(logger);
 				break;
 			case 14:
+				logger.info("Write to JSON file");
+				addressBookMain.writeDataToJSONFile();
+				break;
+			case 15:
+				logger.info("Read data from JSON file");
+				addressBookMain.readFromJSonFile(logger);
+				break;
+			case 16:
 				logger.info("EXITING");
 				break;
 			}
-		} while (choice != 14);
+		} while (choice != 16);
 	}
 }
