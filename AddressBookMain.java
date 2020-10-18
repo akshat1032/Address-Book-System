@@ -263,4 +263,8 @@ public class AddressBookMain {
 			addressBook.entrySet().stream().forEach(key -> System.out.print(key.getValue()));
 		}
 	}
+
+	public void writeDataToFile() {
+		new AddressBookFileIOService().writeToFile(personObjectList);
+	}
 }
